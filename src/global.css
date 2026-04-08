@@ -1,0 +1,13 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: 'Space Grotesk', sans-serif;
+  --font-mono: 'Space Mono', monospace;
+
+  --color-accent: #C0392B;
+  --color-base: #FFFFFF;
+  --color-ink: #1a1a1a;
+  --color-muted: #6b6b6b;
+  --color-surface: #f5f4f0;
+  --color-border: #e0ddd6;
+}

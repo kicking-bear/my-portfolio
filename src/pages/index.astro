@@ -1,4 +1,5 @@
 ---
+import '../global.css'
 import { sanityClient } from '../sanity'
 
 const caseStudies = await sanityClient.fetch(`
@@ -20,6 +21,9 @@ const caseStudies = await sanityClient.fetch(`
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width" />
     <title>Your Name — UX Designer</title>
+	<link rel="preconnect" href="https://fonts.googleapis.com" />
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+	<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500&family=Space+Mono&display=swap" rel="stylesheet" />
   </head>
   <body>
 
@@ -34,7 +38,7 @@ const caseStudies = await sanityClient.fetch(`
 
     <main>
       <section>
-        <h1>Designing systems people trust.</h1>
+        <h1 class="text-4xl font-sans font-medium">Designing systems people trust.</h1>
         <p>UX Designer — Product · Research · Systems</p>
       </section>
 
