@@ -39,6 +39,11 @@ const caseStudy = defineType({
       type: 'string',
     }),
     defineField({
+      name: 'employer',
+      title: 'Employer / Client',
+      type: 'string',
+    }),
+    defineField({
       name: 'timeline',
       title: 'Timeline',
       type: 'string',
@@ -49,10 +54,109 @@ const caseStudy = defineType({
       type: 'text',
     }),
     defineField({
-      name: 'body',
-      title: 'Body',
+      name: 'sections',
+      title: 'Case Study Sections',
       type: 'array',
-      of: [{ type: 'block' }, { type: 'image' }],
+      of: [
+        {
+          type: 'object',
+          name: 'section',
+          title: 'Section',
+          fields: [
+            { name: 'title', title: 'Section Title', type: 'string' },
+            {
+              name: 'body',
+              title: 'Body',
+              type: 'array',
+              of: [{ type: 'block' }, { type: 'image' }],
+            },
+            {
+              name: 'images',
+              title: 'Images',
+              type: 'array',
+              of: [{ type: 'image' }],
+            },
+            {
+              name: 'stats',
+              title: 'Stats / Metrics',
+              type: 'array',
+              of: [
+                {
+                  type: 'object',
+                  fields: [
+                    { name: 'value', title: 'Value', type: 'string' },
+                    { name: 'label', title: 'Label', type: 'string' },
+                  ],
+                },
+              ],
+            },
+            {
+              name: 'subsections',
+              title: 'Subsections',
+              type: 'array',
+              of: [
+                {
+                  type: 'object',
+                  fields: [
+                    { name: 'title', title: 'Title', type: 'string' },
+                    {
+                      name: 'body',
+                      title: 'Body',
+                      type: 'array',
+                      of: [{ type: 'block' }, { type: 'image' }],
+                    },
+                    {
+                      name: 'images',
+                      title: 'Images',
+                      type: 'array',
+                      of: [{ type: 'image' }],
+                    },
+                  ],
+                },
+              ],
+            },
+          ],
+        },
+      ],
+    }),
+    defineField({
+      name: 'features',
+      title: 'Feature Showcase',
+      type: 'array',
+      of: [
+        {
+          type: 'object',
+          fields: [
+            { name: 'title', title: 'Feature Title', type: 'string' },
+            {
+              name: 'body',
+              title: 'Body',
+              type: 'array',
+              of: [{ type: 'block' }, { type: 'image' }],
+            },
+            {
+              name: 'stats',
+              title: 'Stats',
+              type: 'array',
+              of: [
+                {
+                  type: 'object',
+                  fields: [
+                    { name: 'value', title: 'Value', type: 'string' },
+                    { name: 'label', title: 'Label', type: 'string' },
+                  ],
+                },
+              ],
+            },
+            {
+              name: 'images',
+              title: 'Images',
+              type: 'array',
+              of: [{ type: 'image' }],
+            },
+          ],
+        },
+      ],
     }),
     defineField({
       name: 'outcomes',
@@ -69,8 +173,14 @@ const caseStudy = defineType({
       ],
     }),
     defineField({
+      name: 'reflections',
+      title: 'Impact & Reflections',
+      type: 'array',
+      of: [{ type: 'block' }],
+    }),
+    defineField({
       name: 'featured',
-      title: 'Featured',
+      title: 'Featured on homepage',
       type: 'boolean',
     }),
     defineField({
