@@ -1,0 +1,73 @@
+---
+export const prerender = false
+
+import { sanityClient } from '../../sanity'
+
+const { slug } = Astro.params
+
+const study = await sanityClient.fetch(`
+  *[_type == "caseStudy" && slug.current == $slug][0] {
+    title,
+    tagline,
+    tags,
+    role,
+    timeline,
+    overview,
+    body,
+    outcomes,
+    featured,
+    isProtected
+  }
+`, { slug })
+
+if (!study) {
+  return Astro.redirect('/404')
+}
+---
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>{study.title} — Your Name</title>
+  </head>
+  <body>
+
+    <nav>
+      <a href="/">← Back</a>
+      <span>Your Name</span>
+    </nav>
+
+    <main>
+      <h1>{study.title}</h1>
+      <p>{study.tagline}</p>
+
+      <div>
+        <span>{study.role}</span>
+        <span>{study.timeline}</span>
+      </div>
+
+      {study.overview && (
+        <section>
+          <h2>Overview</h2>
+          <p>{study.overview}</p>
+        </section>
+      )}
+
+      {study.outcomes && study.outcomes.length > 0 && (
+        <section>
+          <h2>Outcomes</h2>
+          <div>
+            {study.outcomes.map((outcome: any) => (
+              <div>
+                <strong>{outcome.metric}</strong>
+                <span>{outcome.label}</span>
+              </div>
+            ))}
+          </div>
+        </section>
+      )}
+    </main>
+
+  </body>
+</html>
